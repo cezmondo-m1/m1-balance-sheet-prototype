@@ -7,7 +7,7 @@ export default function App() {
     <div className="min-h-screen bg-white">
       <TopNav />
       <Sidebar />
-      <main className="pt-14 ml-[264px]">
+      <main className="pt-14 lg:ml-[264px]">
         <BalanceSheet />
       </main>
     </div>

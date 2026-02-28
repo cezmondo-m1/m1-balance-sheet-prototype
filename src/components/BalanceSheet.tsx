@@ -124,7 +124,7 @@ function SummaryCard({
 
 function AddButton({ label }: { label: string }) {
   return (
-    <button className="flex items-center gap-1.5 px-5 py-2.5 rounded-full border border-[#d4dbe6] text-[14px] font-semibold text-[#1c2026] hover:bg-gray-50 transition-colors">
+    <button className="self-start flex items-center gap-1.5 px-5 py-2.5 rounded-full border border-[#d4dbe6] text-[14px] font-semibold text-[#1c2026] hover:bg-gray-50 transition-colors">
       {label}
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
         <path d="M8 3v10M3 8h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -145,8 +145,8 @@ export default function BalanceSheet() {
   return (
     <div className="min-h-screen bg-white">
       {/* Secondary tabs */}
-      <div className="border-b border-[#d4dbe6] bg-white sticky top-14 z-10">
-        <div className="px-16 flex items-center gap-8 h-12">
+      <div className="border-b border-[#d4dbe6] bg-white sticky top-14 z-10 overflow-x-auto">
+        <div className="px-4 md:px-8 lg:px-16 flex items-center gap-6 lg:gap-8 h-12 min-w-max">
             {['About you', 'Your finances', 'M1 accounts', 'Documents', 'Security', 'Preferences', 'Platform fee'].map(
               (tab) => (
                 <button
@@ -165,13 +165,13 @@ export default function BalanceSheet() {
       </div>
 
       {/* Content */}
-      <div className="px-16 py-8">
+      <div className="px-4 md:px-8 lg:px-16 py-6 lg:py-8">
           {/* Sub-tabs */}
-          <div className="flex items-center gap-3 mb-8">
+          <div className="flex items-center gap-2 mb-8 overflow-x-auto pb-1">
             {['Balance sheet', 'Cash flow', 'Investment profile', 'Investor disclosures'].map((tab) => (
               <button
                 key={tab}
-                className={`px-4 py-1.5 rounded-full text-[14px] leading-5 border transition-colors ${
+                className={`shrink-0 px-4 py-1.5 rounded-full text-[14px] leading-5 border transition-colors ${
                   tab === 'Balance sheet'
                     ? 'border-[#1c2026] bg-[#1c2026] text-white font-semibold'
                     : 'border-[#d4dbe6] text-[#546073] font-normal hover:border-[#1c2026] hover:text-[#1c2026]'
@@ -187,50 +187,46 @@ export default function BalanceSheet() {
             Balance sheet
           </h2>
 
-          {/* Summary cards */}
-          <div className="grid grid-cols-2 gap-[52px] mb-8">
-            <SummaryCard
-              title="Total assets"
-              amount="$2,107,849"
-              compositionSegments={[
-                { color: '#9aaed6', widthPercent: 16.4 },
-                { color: '#3d5a94', widthPercent: 80.6 },
-                { color: '#ccd6ea', widthPercent: 3 },
-              ]}
-              legend={[
-                { color: '#9aaed6', label: 'Investable assets $345,360' },
-                { color: '#3d5a94', label: 'Real estate $1,700,000' },
-                { color: '#ccd6ea', label: 'Other significant assets $62,489' },
-              ]}
-            />
-            <SummaryCard
-              title="Total liabilities"
-              amount="$180,200"
-              compositionSegments={[
-                { color: '#f4e0a2', widthPercent: 69.4 },
-                { color: '#edd17b', widthPercent: 2.7 },
-                { color: '#d6a55c', widthPercent: 27.9 },
-              ]}
-              legend={[
-                { color: '#f4e0a2', label: 'Mortgage $125,000' },
-                { color: '#edd17b', label: 'Credit cards $5,050' },
-                { color: '#d6a55c', label: 'Other debts and loans $50,150' },
-              ]}
-            />
-          </div>
-
-          {/* Add buttons */}
-          <div className="grid grid-cols-2 gap-[52px] mb-12">
-            <div>
+          {/* Summary cards + add buttons (paired so they stay together when stacking) */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-[52px] mb-12">
+            <div className="flex flex-col gap-6">
+              <SummaryCard
+                title="Total assets"
+                amount="$2,107,849"
+                compositionSegments={[
+                  { color: '#9aaed6', widthPercent: 16.4 },
+                  { color: '#3d5a94', widthPercent: 80.6 },
+                  { color: '#ccd6ea', widthPercent: 3 },
+                ]}
+                legend={[
+                  { color: '#9aaed6', label: 'Investable assets $345,360' },
+                  { color: '#3d5a94', label: 'Real estate $1,700,000' },
+                  { color: '#ccd6ea', label: 'Other significant assets $62,489' },
+                ]}
+              />
               <AddButton label="Add asset" />
             </div>
-            <div>
+            <div className="flex flex-col gap-6">
+              <SummaryCard
+                title="Total liabilities"
+                amount="$180,200"
+                compositionSegments={[
+                  { color: '#f4e0a2', widthPercent: 69.4 },
+                  { color: '#edd17b', widthPercent: 2.7 },
+                  { color: '#d6a55c', widthPercent: 27.9 },
+                ]}
+                legend={[
+                  { color: '#f4e0a2', label: 'Mortgage $125,000' },
+                  { color: '#edd17b', label: 'Credit cards $5,050' },
+                  { color: '#d6a55c', label: 'Other debts and loans $50,150' },
+                ]}
+              />
               <AddButton label="Add liability" />
             </div>
           </div>
 
           {/* Two-column sections */}
-          <div className="grid grid-cols-2 gap-[52px]">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-[52px]">
             {/* Left: Assets */}
             <div className="flex flex-col gap-12">
               {/* Cash and Savings */}

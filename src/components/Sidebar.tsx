@@ -34,7 +34,7 @@ function NavItem({ icon, label, active = false, hasChevron = false }: NavItemPro
 export default function Sidebar() {
   return (
     <div
-      className="fixed left-0 top-14 bottom-0 w-[264px] bg-white border-r border-[#d4dbe6] flex flex-col overflow-hidden z-10"
+      className="hidden lg:flex fixed left-0 top-14 bottom-0 w-[264px] bg-white border-r border-[#d4dbe6] flex-col overflow-hidden z-10"
     >
       {/* Intelligence Button */}
       <div className="px-3 pt-6 pb-2">
